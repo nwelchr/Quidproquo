@@ -47,7 +47,7 @@ class Tutorial extends Component {
   renderItem({ item, index }) {
     console.log(item.image);
     return (
-      <View>
+      <View style={{ paddingTop: 20 }}>
         <Card>
           <CardSection>
             <View style={{ width: '70%' }}>
@@ -75,7 +75,7 @@ class Tutorial extends Component {
   }
 
   logIntoFacebook = () => {
-    this.props.navigation.navigate('Test');
+    this.props.navigation.navigate('Dashboard');
   };
 
   logIntoGoogle() {
