@@ -27,7 +27,7 @@ const { width: viewportWidth, height: viewportHeight } = Dimensions.get(
 );
 
 function wp(percentage) {
-  const value = percentage * viewportWidth / 100;
+  const value = (percentage * viewportWidth) / 100;
   return Math.round(value);
 }
 
@@ -74,8 +74,12 @@ class Tutorial extends Component {
     );
   }
 
-  logIntoFacebook() {
-    console.log('hi');
+  logIntoFacebook = () => {
+    this.props.navigation.navigate('Test');
+  };
+
+  logIntoGoogle() {
+    console.log(this);
   }
 
   render() {
@@ -103,14 +107,12 @@ class Tutorial extends Component {
           <Card style={{ justifyContent: 'space-between', flex: 1 }}>
             <Card>
               <CardSection>
-                <Button onPress={this.logIntoFacebook.bind(this)}>
+                <Button onPress={this.logIntoFacebook}>
                   Log In With Facebook
                 </Button>
               </CardSection>
               <CardSection>
-                <Button onPress={this.logIntoFacebook.bind(this)}>
-                  Log In With Google
-                </Button>
+                <Button onPress={this.logIntoGoogle}>Log In With Google</Button>
               </CardSection>
             </Card>
             <CardSection>
