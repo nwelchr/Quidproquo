@@ -13,18 +13,24 @@ class Dashboard extends Component {
         renderTabBar={() => (
           <DashboardTabBar activeTextColor="red" inactiveTextColor="black" />
         )}>
-        <View tabLabel="First">
+        <View tabLabel="ios-person">
           <Text>FIRSTIT</Text>
         </View>
-        <View tabLabel="Second">
+        <View tabLabel="ios-bug">
           <Text>SECONDA</Text>
         </View>
-        <View tabLabel="Third">
-          <Text>THIRDO</Text>
+        <View tabLabel="ios-chatbubbles">
+          <Text>HELLO</Text>
         </View>
       </ScrollableTabView>
     );
   }
 }
+
+// {
+/* <Settings />
+        <Feed />
+        <Chat /> */
+// }
 
 export default Dashboard;

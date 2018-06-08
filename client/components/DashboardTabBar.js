@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Animated } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Animated,
+  Dimensions,
+  PixelRatio,
+  TouchableOpacity
+} from 'react-native';
 import { Button } from './common';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 class DashboardTabBar extends Component {
   constructor(props) {
@@ -15,7 +24,7 @@ class DashboardTabBar extends Component {
     const fontWeight = isTabActive ? 'bold' : 'normal';
 
     return (
-      <Button
+      <TouchableOpacity
         style={{ flex: 1 }}
         key={name}
         accessible={true}
@@ -24,21 +33,21 @@ class DashboardTabBar extends Component {
         onPress={() => onPressHandler(page)}>
         <View style={[styles.tab, this.props.tabStyle]}>
           <Text style={[{ color: textColor, fontWeight }, textStyle]}>
-            {name}
+            <Icon name={name} size={30} />
           </Text>
         </View>
-      </Button>
+      </TouchableOpacity>
     );
   }
 
   render() {
-    const containerWidth = this.props.containerWidth;
-    const numberOfTabs = this.props.tabs.length;
+    const containerWidth = Dimensions.get('window').width;
+    const numberOfTabs = 3;
     const tabUnderlineStyle = {
       position: 'absolute',
       width: containerWidth / numberOfTabs,
       height: 4,
-      backgroundColor: 'navy',
+      backgroundColor: 'green',
       bottom: 0
     };
 
@@ -55,16 +64,16 @@ class DashboardTabBar extends Component {
         ]}>
         {this.props.tabs.map((name, page) => {
           const isTabActive = this.props.activeTab === page;
-          const renderTab = this.props.renderTab || this.renderTab;
+          const renderTab = this.props.renderTab || this.renderTab.bind(this);
           return renderTab(name, page, isTabActive, this.props.goToPage);
         })}
         <Animated.View
           style={[
-            tabUnderlineStyle,
+            // tabUnderlineStyle,
             {
               transform: [{ translateX }]
-            },
-            this.props.underlineStyle
+            }
+            // this.props.underlineStyle
           ]}
         />
       </View>
@@ -76,18 +85,16 @@ const styles = StyleSheet.create({
   tab: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
-    paddingBottom: 10
+    justifyContent: 'center'
   },
   tabs: {
-    height: 50,
+    height: 80,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    borderWidth: 1,
-    borderTopWidth: 0,
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
-    borderColor: '#ccc'
+    borderBottomWidth: 2
+  },
+  textStyle: {
+    fontSize: 30
   }
 });
 
