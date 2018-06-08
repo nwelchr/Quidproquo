@@ -16,7 +16,7 @@ class Dashboard extends Component {
             <DashboardTabBar activeTextColor="red" inactiveTextColor="black" />
           )}>
           <Settings tabLabel="ios-person" />
-          <View tabLabel="ios-bug">
+          <View tabLabel="quidproquo">
             <Text>SECONDA</Text>
           </View>
           <View tabLabel="ios-chatbubbles">

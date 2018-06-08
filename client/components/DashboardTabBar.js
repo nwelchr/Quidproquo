@@ -6,7 +6,9 @@ import {
   Animated,
   Dimensions,
   PixelRatio,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  Easing,
+  Image
 } from 'react-native';
 import { Button } from './common';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -14,6 +16,11 @@ import Icon from 'react-native-vector-icons/Ionicons';
 class DashboardTabBar extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      0: 35,
+      1: 40,
+      2: 35
+    };
   }
 
   renderTabOption(name, page) {}
@@ -23,6 +30,25 @@ class DashboardTabBar extends Component {
     const textColor = isTabActive ? activeTextColor : inactiveTextColor;
     const fontWeight = isTabActive ? 'bold' : 'normal';
 
+    let icon;
+    if (name === 'quidproquo') {
+      icon = (
+        <Image
+          style={styles.imageStyle}
+          source={{
+            uri:
+              'https://s3.us-east-2.amazonaws.com/quidproquo/qpq_assets/logo-xsmall.png'
+          }}
+        />
+      );
+    } else {
+      icon = (
+        <Text style={[{ color: textColor, fontWeight }, textStyle]}>
+          <Icon name={name} size={this.state[page]} />
+        </Text>
+      );
+    }
+
     return (
       <TouchableWithoutFeedback
         style={{ flex: 1 }}
@@ -30,12 +56,10 @@ class DashboardTabBar extends Component {
         accessible={true}
         accessibilityLabel={name}
         accessibilityTraits="button"
-        onPress={() => onPressHandler(page)}>
-        <View style={[styles.tab, this.props.tabStyle]}>
-          <Text style={[{ color: textColor, fontWeight }, textStyle]}>
-            <Icon name={name} size={35} />
-          </Text>
-        </View>
+        onPress={() => {
+          onPressHandler(page);
+        }}>
+        <View style={[styles.tab, this.props.tabStyle]}>{icon}</View>
       </TouchableWithoutFeedback>
     );
   }
@@ -53,11 +77,6 @@ class DashboardTabBar extends Component {
     //   shadowOpacity: 1,
     //   bottom: 0
     // };
-
-    const translateX = this.props.scrollValue.interpolate({
-      inputRange: [0, 1],
-      outputRange: [0, containerWidth / numberOfTabs]
-    });
 
     return (
       <View
@@ -94,6 +113,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 1
+  },
+  imageStyle: {
+    width: 40,
+    height: 40
   },
   textStyle: {
     fontSize: 30
