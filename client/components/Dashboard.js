@@ -4,25 +4,26 @@ import ScrollableTabView, {
   DefaultTabBar
 } from 'react-native-scrollable-tab-view';
 import DashboardTabBar from './DashboardTabBar';
+import Settings from './Settings';
 
 class Dashboard extends Component {
   render() {
     return (
-      <ScrollableTabView
-        initialPage={1}
-        renderTabBar={() => (
-          <DashboardTabBar activeTextColor="red" inactiveTextColor="black" />
-        )}>
-        <View tabLabel="ios-person">
-          <Text>FIRSTIT</Text>
-        </View>
-        <View tabLabel="ios-bug">
-          <Text>SECONDA</Text>
-        </View>
-        <View tabLabel="ios-chatbubbles">
-          <Text>HELLO</Text>
-        </View>
-      </ScrollableTabView>
+      <View style={{ flex: 1, backgroundColor: '#fff' }}>
+        <ScrollableTabView
+          initialPage={1}
+          renderTabBar={() => (
+            <DashboardTabBar activeTextColor="red" inactiveTextColor="black" />
+          )}>
+          <Settings tabLabel="ios-person" />
+          <View tabLabel="ios-bug">
+            <Text>SECONDA</Text>
+          </View>
+          <View tabLabel="ios-chatbubbles">
+            <Text>HELLO</Text>
+          </View>
+        </ScrollableTabView>
+      </View>
     );
   }
 }
