@@ -42,6 +42,7 @@ class Tutorial extends Component {
   constructor(props) {
     super(props);
     this.state = { activeSlide: 0 };
+    this.logIntoFacebook = this.logIntoFacebook.bind(this);
   }
 
   renderItem({ item, index }) {
@@ -74,9 +75,9 @@ class Tutorial extends Component {
     );
   }
 
-  logIntoFacebook = () => {
+  logIntoFacebook() {
     this.props.navigation.navigate('Dashboard');
-  };
+  }
 
   logIntoGoogle() {
     console.log(this);
@@ -112,7 +113,9 @@ class Tutorial extends Component {
                 </Button>
               </CardSection>
               <CardSection>
-                <Button onPress={this.logIntoGoogle}>Log In With Google</Button>
+                <Button onPress={this.logIntoGoogle.bind(this)}>
+                  Log In With Google
+                </Button>
               </CardSection>
             </Card>
             <CardSection>

@@ -1,90 +1,30 @@
-const React = require('react');
-const { StyleSheet, Text, View, Animated } = require('react-native');
-import { Button } from './common';
+import React, { Component } from 'react';
+import { View, Text } from 'react-native';
+import ScrollableTabView, {
+  DefaultTabBar
+} from 'react-native-scrollable-tab-view';
+import DashboardTabBar from './DashboardTabBar';
 
-class DashboardTabBar extends React.component {
-  renderTabOption(name, page) {}
-
-  renderTab(name, page, isTabActive, onPressHandler) {
-    const { activeTextColor, inactiveTextColor, textStyle } = this.props;
-    const textColor = isTabActive ? activeTextColor : inactiveTextColor;
-    const fontWeight = isTabActive ? 'bold' : 'normal';
-
-    return (
-      <Button
-        style={{ flex: 1 }}
-        key={name}
-        accessible={true}
-        accessibilityLabel={name}
-        accessibilityTraits="button"
-        onPress={() => onPressHandler(page)}>
-        <View style={[styles.tab, this.props.tabStyle]}>
-          <Text style={[{ color: textColor, fontWeight }, textStyle]}>
-            {name}
-          </Text>
-        </View>
-      </Button>
-    );
-  }
-
+class Dashboard extends Component {
   render() {
-    const containerWidth = this.props.containerWidth;
-    const numberOfTabs = this.props.tabs.length;
-    const tabUnderlineStyle = {
-      position: 'absolute',
-      width: containerWidth / numberOfTabs,
-      height: 4,
-      backgroundColor: 'navy',
-      bottom: 0
-    };
-
-    const translateX = this.props.scrollValue.interpolate({
-      inputRange: [0, 1],
-      outputRange: [0, containerWidth / numberOfTabs]
-    });
     return (
-      <View
-        style={[
-          styles.tabs,
-          { backgroundColor: this.props.backgroundColor },
-          this.props.style
-        ]}>
-        {this.props.tabs.map((name, page) => {
-          const isTabActive = this.props.activeTab === page;
-          const renderTab = this.props.renderTab || this.renderTab;
-          return renderTab(name, page, isTabActive, this.props.goToPage);
-        })}
-        <Animated.View
-          style={[
-            tabUnderlineStyle,
-            {
-              transform: [{ translateX }]
-            },
-            this.props.underlineStyle
-          ]}
-        />
-      </View>
+      <ScrollableTabView
+        initialPage={1}
+        renderTabBar={() => (
+          <DashboardTabBar activeTextColor="red" inactiveTextColor="black" />
+        )}>
+        <View tabLabel="First">
+          <Text>FIRSTIT</Text>
+        </View>
+        <View tabLabel="Second">
+          <Text>SECONDA</Text>
+        </View>
+        <View tabLabel="Third">
+          <Text>THIRDO</Text>
+        </View>
+      </ScrollableTabView>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  tab: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingBottom: 10
-  },
-  tabs: {
-    height: 50,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    borderWidth: 1,
-    borderTopWidth: 0,
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
-    borderColor: '#ccc'
-  }
-});
-
-module.exports = Dashboard;
+export default Dashboard;
