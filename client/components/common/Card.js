@@ -9,7 +9,7 @@ const Card = props => {
 const styles = {
   containerStyle: {
     justifyContent: 'center',
-    padding: 10
+    padding: 5
   }
 };
 

@@ -25,7 +25,8 @@ class Settings extends Component {
           style={{
             width: '100%',
             flexDirection: 'row',
-            justifyContent: 'space-around'
+            justifyContent: 'space-around',
+            paddingTop: 30
           }}>
           <Card
             style={{
@@ -46,8 +47,17 @@ class Settings extends Component {
             <Text style={styles.textStyle}>Edit Profile</Text>
           </Card>
         </Card>
-        <Card style={{ flex: 1, alignItems: 'flex-end' }}>
-          <Ionicon name="ios-information-circle" size={50} />
+        <Card
+          style={{
+            flex: 1,
+            width: '100%',
+            flexDirection: 'row',
+            justifyContent: 'space-around',
+            alignItems: 'flex-end'
+          }}>
+          <Icon name="github" size={40} />
+          <Icon name="linkedin" size={40} />
+          <Icon name="user-circle" size={40} />
         </Card>
       </View>
     );
@@ -64,14 +74,15 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start'
   },
   picStyle: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
+    width: 120,
+    height: 120,
+    borderRadius: 60,
     margin: 10
   },
   nameStyle: {
     textAlign: 'center',
-    fontSize: 20
+    fontSize: 24,
+    fontFamily: 'HelveticaNeue-Light'
   },
   buttonContainerStyle: {
     backgroundColor: '#eee',

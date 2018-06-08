@@ -48,7 +48,7 @@ class Tutorial extends Component {
   renderItem({ item, index }) {
     console.log(item.image);
     return (
-      <View style={{ paddingTop: 20 }}>
+      <View style={{ paddingTop: 40 }}>
         <Card>
           <CardSection>
             <View style={{ width: '70%' }}>
