@@ -5,6 +5,7 @@ import ScrollableTabView, {
 } from 'react-native-scrollable-tab-view';
 import DashboardTabBar from './DashboardTabBar';
 import Settings from './Settings';
+import Feed from './Feed';
 
 class Dashboard extends Component {
   render() {
@@ -14,9 +15,7 @@ class Dashboard extends Component {
           initialPage={1}
           renderTabBar={() => <DashboardTabBar />}>
           <Settings tabLabel="ios-person" />
-          <View tabLabel="quidproquo">
-            <Text>SECONDA</Text>
-          </View>
+          <Feed tabLabel="quidproquo" />
           <View tabLabel="ios-chatbubbles">
             <Text>HELLO</Text>
           </View>
