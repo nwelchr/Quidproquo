@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, Image, Dimensions } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  Dimensions,
+  StyleSheet,
+  TouchableOpacity
+} from 'react-native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { Card, CardSection, Input, Button, Spinner } from './common';
 import LinearGradient from 'react-native-linear-gradient';
@@ -100,25 +107,34 @@ class Tutorial extends Component {
           <Card style={{ justifyContent: 'space-between', flex: 1 }}>
             <Card>
               <CardSection>
-                <Button
-                  style={{
-                    backgroundColor: '#3b5998',
-                    borderWidth: 0
-                  }}
-                  onPress={this.props.onFacebookPress}>
-                  Log In With Facebook
-                </Button>
+                <TouchableOpacity
+                  onPress={this.props.onGooglePress}
+                  style={{ flex: 1 }}>
+                  <LinearGradient
+                    colors={['#f5605f', '#db4645']}
+                    start={{ x: 0.0, y: 0.5 }}
+                    end={{ x: 1.0, y: 0.5 }}
+                    style={styles.linearGradient}>
+                    <Text style={styles.linearGradientButtonText}>
+                      Sign in with Google
+                    </Text>
+                  </LinearGradient>
+                </TouchableOpacity>
               </CardSection>
               <CardSection>
-                <Button
-                  style={{
-                    backgroundColor: '#DD4B39',
-                    borderWidth: 0
-                  }}
-                  onPress={this.props.onGooglePress}>
-                  Log In With Google
-                </Button>
-                <LinearGradient colors={['#F00', 'transparent']} />
+                <TouchableOpacity
+                  onPress={this.props.onFacebookPress}
+                  style={{ flex: 1 }}>
+                  <LinearGradient
+                    colors={['#405d9c', '#27437e']}
+                    start={{ x: 0.0, y: 0.5 }}
+                    end={{ x: 1.0, y: 0.5 }}
+                    style={styles.linearGradient}>
+                    <Text style={styles.linearGradientButtonText}>
+                      Sign in with Facebook
+                    </Text>
+                  </LinearGradient>
+                </TouchableOpacity>
               </CardSection>
             </Card>
             <CardSection>
@@ -136,5 +152,20 @@ class Tutorial extends Component {
     );
   }
 }
+
+var styles = StyleSheet.create({
+  linearGradient: {
+    borderRadius: 20
+  },
+  linearGradientButtonText: {
+    fontSize: 18,
+    fontFamily: 'HelveticaNeue-UltraLight',
+    fontWeight: '300',
+    textAlign: 'center',
+    color: '#ffffff',
+    backgroundColor: 'transparent',
+    margin: 10
+  }
+});
 
 export default Tutorial;
