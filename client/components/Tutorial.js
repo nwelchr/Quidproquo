@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Image, Dimensions } from 'react-native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { Card, CardSection, Input, Button, Spinner } from './common';
+import LinearGradient from 'react-native-linear-gradient';
 
 const ENTRIES = [
   {
@@ -42,7 +43,6 @@ class Tutorial extends Component {
   constructor(props) {
     super(props);
     this.state = { activeSlide: 0 };
-    this.logIntoFacebook = this.logIntoFacebook.bind(this);
   }
 
   renderItem({ item, index }) {
@@ -75,14 +75,6 @@ class Tutorial extends Component {
     );
   }
 
-  logIntoFacebook() {
-    this.props.navigation.navigate('Dashboard');
-  }
-
-  logIntoGoogle() {
-    console.log(this);
-  }
-
   render() {
     const { activeSlide } = this.state;
 
@@ -108,14 +100,25 @@ class Tutorial extends Component {
           <Card style={{ justifyContent: 'space-between', flex: 1 }}>
             <Card>
               <CardSection>
-                <Button onPress={this.logIntoFacebook}>
+                <Button
+                  style={{
+                    backgroundColor: '#3b5998',
+                    borderWidth: 0
+                  }}
+                  onPress={this.props.onFacebookPress}>
                   Log In With Facebook
                 </Button>
               </CardSection>
               <CardSection>
-                <Button onPress={this.logIntoGoogle.bind(this)}>
+                <Button
+                  style={{
+                    backgroundColor: '#DD4B39',
+                    borderWidth: 0
+                  }}
+                  onPress={this.props.onGooglePress}>
                   Log In With Google
                 </Button>
+                <LinearGradient colors={['#F00', 'transparent']} />
               </CardSection>
             </Card>
             <CardSection>
