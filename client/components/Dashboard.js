@@ -12,9 +12,7 @@ class Dashboard extends Component {
       <View style={{ flex: 1, backgroundColor: '#fff' }}>
         <ScrollableTabView
           initialPage={1}
-          renderTabBar={() => (
-            <DashboardTabBar activeTextColor="red" inactiveTextColor="black" />
-          )}>
+          renderTabBar={() => <DashboardTabBar />}>
           <Settings tabLabel="ios-person" />
           <View tabLabel="quidproquo">
             <Text>SECONDA</Text>

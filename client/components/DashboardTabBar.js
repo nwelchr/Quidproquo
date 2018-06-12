@@ -29,12 +29,22 @@ class DashboardTabBar extends Component {
     const { activeTextColor, inactiveTextColor, textStyle } = this.props;
     const textColor = isTabActive ? activeTextColor : inactiveTextColor;
     const fontWeight = isTabActive ? 'bold' : 'normal';
+    const opacity = isTabActive ? 1 : 0.7;
+    const circle = isTabActive ? (
+      <View style={{ width: 40, height: 40, borderRadius: 20 }} />
+    ) : null;
+
+    const imageStyle = {
+      width: 35,
+      height: 35,
+      opacity
+    };
 
     let icon;
     if (name === 'quidproquo') {
       icon = (
         <Image
-          style={styles.imageStyle}
+          style={imageStyle}
           source={{
             uri:
               'https://s3.us-east-2.amazonaws.com/quidproquo/qpq_assets/logo-xsmall.png'
@@ -43,7 +53,7 @@ class DashboardTabBar extends Component {
       );
     } else {
       icon = (
-        <Text style={[{ color: textColor, fontWeight }, textStyle]}>
+        <Text style={[{ opacity }, textStyle]}>
           <Icon name={name} size={this.state[page]} />
         </Text>
       );
@@ -113,10 +123,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 2,
     elevation: 1
-  },
-  imageStyle: {
-    width: 40,
-    height: 40
   },
   textStyle: {
     fontSize: 30
