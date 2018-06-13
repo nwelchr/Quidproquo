@@ -5,11 +5,14 @@ import {
   Image,
   Dimensions,
   StyleSheet,
+  Modal,
   TouchableOpacity
 } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import { Card, CardSection, Input, Button, Spinner } from './common';
 import { connect } from 'react-redux';
+import Icon from 'react-native-vector-icons/Ionicons';
+import FetchingModal from './FetchingModal';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get(
   'window'
@@ -21,8 +24,8 @@ function wp(percentage) {
 }
 
 const slideHeight = viewportHeight * 0.36;
-const slideWidth = wp(90);
-const itemHorizontalMargin = wp(0);
+const slideWidth = wp(60);
+const itemHorizontalMargin = wp(40);
 
 export const sliderWidth = viewportWidth;
 export const itemWidth = slideWidth + itemHorizontalMargin * 2;
@@ -40,18 +43,31 @@ class Feed extends Component {
   renderItem({ item, index }) {
     const { name, blurb, offering, seeking, pictureUrl } = item;
     return (
-      <View style={{ paddingTop: 40 }}>
-        <Card>
-          <CardSection>
+      <View
+        style={{
+          width: viewportWidth * 0.75,
+          transform: [
+            { translateX: viewportWidth / 2 - (viewportWidth * 0.75) / 2 }
+          ],
+          justifyContent: 'center'
+        }}>
+        <Card
+          style={{
+            borderWidth: 1,
+            borderRadius: 20,
+            borderColor: '#ccc',
+            padding: 0,
+            overflow: 'hidden'
+          }}>
+          <CardSection
+            style={{
+              backgroundColor: 'transparent',
+              padding: 0
+            }}>
             <View
               style={{
-                height: 200,
-                width: 200,
-                borderTopLeftRadius: 20,
-                borderTopRightRadius: 20,
-                borderBottomRightRadius: 0,
-                borderBottomLeftRadius: 0,
-                overflow: 'hidden'
+                flex: 1,
+                height: 200
               }}>
               <Image
                 style={{
@@ -61,22 +77,32 @@ class Feed extends Component {
               />
             </View>
           </CardSection>
-          <CardSection>
-            <View style={{ width: '70%' }}>
-              <Text
-                style={{
-                  textAlign: 'center',
-                  fontFamily: 'HelveticaNeue-UltraLight',
-                  letterSpacing: 0.5,
-                  fontSize: 20,
-                  color: '#222'
-                }}>
-                {name}
-                {blurb}
-                {offering}
-                {seeking}
+          <CardSection
+            style={{
+              padding: 5,
+              paddingLeft: 20,
+              paddingBottom: 10,
+              flexDirection: 'column',
+              alignItems: 'flex-start'
+            }}>
+            <Text style={styles.nameStyle}>{name}</Text>
+            <Text style={styles.textStyle}>{blurb}</Text>
+            <Text style={[styles.textStyle, styles.titleStyle]}>
+              Can offer:
+            </Text>
+            {offering.map((offer, idx) => (
+              <Text key={idx} style={styles.textStyle}>
+                {offer}
               </Text>
-            </View>
+            ))}
+            <Text style={[styles.textStyle, styles.titleStyle]}>
+              Looking for:
+            </Text>
+            {seeking.map((seek, idx) => (
+              <Text key={idx} style={styles.textStyle}>
+                {seek}
+              </Text>
+            ))}
           </CardSection>
         </Card>
       </View>
@@ -84,53 +110,97 @@ class Feed extends Component {
   }
 
   render() {
-    console.log(this.props.users);
-    if (!this.state.doneFetching) {
-      return (
-        <Fragment>
-          <View
-            style={{
-              flex: 1,
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center'
-            }}>
-            <Card style={{ height: '20%' }}>
-              <Text
-                style={{
-                  textAlign: 'center',
-                  fontFamily: 'HelveticaNeue-Light',
-                  fontSize: 25
-                }}>
-                Fetching Users...
-              </Text>
-              <Spinner size="large" />
-            </Card>
-          </View>
-        </Fragment>
-      );
-    }
-    const { activeSlide } = this.state;
-    const data = Object.values(this.props.users);
+    const { activeSlide, doneFetching } = this.state;
 
+    const notDoneFetching = !doneFetching ? <FetchingModal /> : null;
+
+    const data = Object.values(this.props.users);
+    console.log(activeSlide);
     return (
-      <View style={{ backgroundColor: 'white', width: '100%', flex: 1 }}>
-        <View style={{ flex: 1.5 }}>
-          <Carousel
-            ref={c => {
-              this._carousel = c;
-            }}
-            data={data}
-            renderItem={this.renderItem.bind(this)}
-            sliderWidth={sliderWidth}
-            itemWidth={itemWidth}
-            onSnapToItem={index => this.setState({ activeSlide: index })}
-          />
+      <Fragment>
+        {notDoneFetching}
+        <View
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '100%',
+            flex: 1,
+            padding: 20
+          }}>
+          <View style={{ flex: 1 }}>
+            <Carousel
+              ref={c => {
+                this._carousel = c;
+              }}
+              data={data}
+              renderItem={this.renderItem.bind(this)}
+              sliderWidth={sliderWidth}
+              itemWidth={itemWidth}
+              onSnapToItem={index => this.setState({ activeSlide: index })}
+            />
+          </View>
+          <Card style={{ flex: 1, width: '80%' }}>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center'
+              }}>
+              <TouchableOpacity style={styles.approveButton}>
+                <Icon
+                  style={{ position: 'absolute', top: -12 }}
+                  name="ios-close-outline"
+                  size={120}
+                  color="red"
+                />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.approveButton}>
+                <Icon
+                  style={{ position: 'absolute', top: 14 }}
+                  name="md-heart"
+                  size={70}
+                  color="green"
+                />
+              </TouchableOpacity>
+            </View>
+          </Card>
         </View>
-      </View>
+      </Fragment>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  nameStyle: {
+    textAlign: 'left',
+    fontFamily: 'HelveticaNeue',
+    letterSpacing: 1,
+    fontSize: 20,
+    color: '#222',
+    margin: 2
+  },
+  textStyle: {
+    textAlign: 'center',
+    fontFamily: 'HelveticaNeue-Light',
+    letterSpacing: 0.5,
+    fontSize: 12,
+    color: '#222',
+    margin: 2
+  },
+  approveButton: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    borderWidth: 3,
+    borderColor: '#ccc',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 10
+  },
+  titleStyle: {
+    fontWeight: '400'
+  }
+});
 
 const mapStateToProps = state => ({
   users: state.users
