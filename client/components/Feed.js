@@ -55,6 +55,7 @@ class Feed extends Component {
           style={{
             borderWidth: 1,
             borderRadius: 20,
+            // borderColor: '#ffca2d',
             borderColor: '#ccc',
             padding: 0,
             overflow: 'hidden'
@@ -161,7 +162,7 @@ class Feed extends Component {
                   style={{ position: 'absolute', top: -8 }}
                   name="ios-close-outline"
                   size={90}
-                  color="red"
+                  color="#ED3B6D"
                 />
               </TouchableOpacity>
               <TouchableOpacity style={styles.approveButton}>
@@ -169,7 +170,7 @@ class Feed extends Component {
                   style={{ position: 'absolute', top: 14 }}
                   name="md-heart"
                   size={50}
-                  color="green"
+                  color="#23AF7C"
                 />
               </TouchableOpacity>
             </View>
