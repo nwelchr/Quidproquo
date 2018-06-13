@@ -58,3 +58,4 @@ buck-out/
 # Other
 server/config.js
 server/node_modules
+android/gradle.properties

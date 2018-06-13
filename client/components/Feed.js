@@ -6,7 +6,8 @@ import {
   Dimensions,
   StyleSheet,
   Modal,
-  TouchableOpacity
+  TouchableOpacity,
+  Platform
 } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import { Card, CardSection, Input, Button, Spinner } from './common';
@@ -55,7 +56,6 @@ class Feed extends Component {
           style={{
             borderWidth: 1,
             borderRadius: 20,
-            // borderColor: '#ffca2d',
             borderColor: '#ccc',
             padding: 0,
             overflow: 'hidden'
@@ -185,14 +185,16 @@ const styles = StyleSheet.create({
   nameStyle: {
     textAlign: 'left',
     fontFamily: 'HelveticaNeue',
-    letterSpacing: 1,
+    letterSpacing: 0.3,
+    fontWeight: '500',
     fontSize: 20,
     color: '#222',
     margin: 2
   },
   textStyle: {
-    textAlign: 'center',
-    fontFamily: 'HelveticaNeue-Light',
+    textAlign: 'left',
+    fontFamily: 'HelveticaNeue',
+    fontWeight: '200',
     letterSpacing: 0.5,
     fontSize: 12,
     color: '#222',
@@ -203,6 +205,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 2, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 3,
+    elevation: 6,
     borderRadius: 50,
     width: 80,
     height: 80,

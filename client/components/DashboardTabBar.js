@@ -8,7 +8,8 @@ import {
   PixelRatio,
   TouchableWithoutFeedback,
   Easing,
-  Image
+  Image,
+  Platform
 } from 'react-native';
 import { Button } from './common';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -101,18 +102,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#fff',
-    paddingTop: 20
+    paddingTop: Platform.OS === 'ios' ? 20 : 0
   },
   tabs: {
-    height: 80,
+    height: 60,
     flexDirection: 'row',
     justifyContent: 'space-around',
     borderColor: '#ccc',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
-    shadowRadius: 2,
-    elevation: 1
+    shadowRadius: 3,
+    elevation: 6
   },
   textStyle: {
     fontSize: 30
