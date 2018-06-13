@@ -5,6 +5,7 @@ import { createStore, applyMiddleware } from 'redux';
 import reducers from './reducers';
 import ReduxThunk from 'redux-thunk';
 import LoginSwitch from './components/LoginSwitch';
+import { INITIAL_STORE } from '../frontendData';
 
 export default class App extends Component {
   render() {

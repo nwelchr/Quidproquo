@@ -11,24 +11,7 @@ import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { Card, CardSection, Input, Button, Spinner } from './common';
 import LinearGradient from 'react-native-linear-gradient';
 
-const ENTRIES = [
-  {
-    instruction: 'You scratch their back, they scratch yours.',
-    image: 'https://i.imgur.com/UYiroysl.jpg'
-  },
-  {
-    instruction: "Swipe right if you're interested in exchanging.",
-    image: 'https://i.imgur.com/UPrs1EWl.jpg'
-  },
-  {
-    instruction: 'Make a match if you both swipe right!',
-    image: 'https://i.imgur.com/MABUbpDl.jpg'
-  },
-  {
-    instruction: 'Chat and figure out a win-win deal.',
-    image: 'https://i.imgur.com/KZsmUi2l.jpg'
-  }
-];
+import { ENTRIES } from '../../frontendData';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get(
   'window'
@@ -112,8 +95,8 @@ class Tutorial extends Component {
                   style={{ flex: 1 }}>
                   <LinearGradient
                     colors={['#f5605f', '#db4645']}
-                    start={{ x: 0.0, y: 0.5 }}
-                    end={{ x: 1.0, y: 0.5 }}
+                    start={{ x: 0.5, y: 0.0 }}
+                    end={{ x: 0.5, y: 1.0 }}
                     style={styles.linearGradient}>
                     <Text style={styles.linearGradientButtonText}>
                       Sign in with Google
@@ -127,8 +110,8 @@ class Tutorial extends Component {
                   style={{ flex: 1 }}>
                   <LinearGradient
                     colors={['#405d9c', '#27437e']}
-                    start={{ x: 0.0, y: 0.5 }}
-                    end={{ x: 1.0, y: 0.5 }}
+                    start={{ x: 0.5, y: 0.0 }}
+                    end={{ x: 0.5, y: 1.0 }}
                     style={styles.linearGradient}>
                     <Text style={styles.linearGradientButtonText}>
                       Sign in with Facebook
