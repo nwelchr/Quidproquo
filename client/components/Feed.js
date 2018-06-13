@@ -67,7 +67,7 @@ class Feed extends Component {
             <View
               style={{
                 flex: 1,
-                height: 200
+                height: 180
               }}>
               <Image
                 style={{
@@ -87,22 +87,32 @@ class Feed extends Component {
             }}>
             <Text style={styles.nameStyle}>{name}</Text>
             <Text style={styles.textStyle}>{blurb}</Text>
+            <Text> </Text>
             <Text style={[styles.textStyle, styles.titleStyle]}>
               Can offer:
             </Text>
-            {offering.map((offer, idx) => (
-              <Text key={idx} style={styles.textStyle}>
-                {offer}
-              </Text>
-            ))}
+            {offering.map((offer, idx) => {
+              const offerSplice =
+                offer.length > 35 ? `${offer.substring(0, 35)}...` : offer;
+              return (
+                <Text key={idx} style={styles.textStyle}>
+                  {offerSplice}
+                </Text>
+              );
+            })}
+            <Text> </Text>
             <Text style={[styles.textStyle, styles.titleStyle]}>
               Looking for:
             </Text>
-            {seeking.map((seek, idx) => (
-              <Text key={idx} style={styles.textStyle}>
-                {seek}
-              </Text>
-            ))}
+            {seeking.map((seek, idx) => {
+              const seekSplice =
+                seek.length > 35 ? `${seek.substring(0, 35)}...` : seek;
+              return (
+                <Text key={idx} style={styles.textStyle}>
+                  {seekSplice}
+                </Text>
+              );
+            })}
           </CardSection>
         </Card>
       </View>
@@ -124,10 +134,10 @@ class Feed extends Component {
             justifyContent: 'center',
             alignItems: 'center',
             width: '100%',
-            flex: 1,
+            flex: 4,
             padding: 20
           }}>
-          <View style={{ flex: 1 }}>
+          <View style={{ flex: 4 }}>
             <Carousel
               ref={c => {
                 this._carousel = c;
@@ -148,9 +158,9 @@ class Feed extends Component {
               }}>
               <TouchableOpacity style={styles.approveButton}>
                 <Icon
-                  style={{ position: 'absolute', top: -12 }}
+                  style={{ position: 'absolute', top: -8 }}
                   name="ios-close-outline"
-                  size={120}
+                  size={90}
                   color="red"
                 />
               </TouchableOpacity>
@@ -158,7 +168,7 @@ class Feed extends Component {
                 <Icon
                   style={{ position: 'absolute', top: 14 }}
                   name="md-heart"
-                  size={70}
+                  size={50}
                   color="green"
                 />
               </TouchableOpacity>
@@ -188,11 +198,14 @@ const styles = StyleSheet.create({
     margin: 2
   },
   approveButton: {
-    width: 100,
-    height: 100,
+    shadowColor: '#000',
+    shadowOffset: { width: 2, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3,
     borderRadius: 50,
-    borderWidth: 3,
-    borderColor: '#ccc',
+    width: 80,
+    height: 80,
+    backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
     margin: 10

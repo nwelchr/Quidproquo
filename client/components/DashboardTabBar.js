@@ -77,16 +77,6 @@ class DashboardTabBar extends Component {
   render() {
     const containerWidth = Dimensions.get('window').width;
     const numberOfTabs = 3;
-    // const tabUnderlineStyle = {
-    //   position: 'absolute',
-    //   width: containerWidth,
-    //   height: 1,
-    //   backgroundColor: '#fff',
-    //   shadowColor: '#000',
-    //   shadowOffset: { width: 0, height: 2 },
-    //   shadowOpacity: 1,
-    //   bottom: 0
-    // };
 
     return (
       <View
