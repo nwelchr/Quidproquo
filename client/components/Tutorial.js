@@ -45,7 +45,8 @@ class Tutorial extends Component {
               <Text
                 style={{
                   textAlign: 'center',
-                  fontFamily: 'HelveticaNeue-UltraLight',
+                  fontFamily: 'HelveticaNeue',
+                  fontWeight: '100',
                   letterSpacing: 0.5,
                   fontSize: 20,
                   color: '#222'
@@ -56,8 +57,14 @@ class Tutorial extends Component {
           </CardSection>
           <CardSection>
             <Image
-              style={{ flex: 1, height: 300, width: 'auto' }}
+              style={{
+                flex: 1,
+                width: 200,
+                height: 300,
+                alignSelf: 'stretch'
+              }}
               source={{ uri: item.image }}
+              resizeMode="contain"
             />
           </CardSection>
         </Card>
@@ -70,7 +77,7 @@ class Tutorial extends Component {
 
     return (
       <View style={{ backgroundColor: 'white', width: '100%', flex: 1 }}>
-        <View style={{ flex: 1.5 }}>
+        <View style={{ flex: 3 }}>
           <Carousel
             ref={c => {
               this._carousel = c;
@@ -121,7 +128,6 @@ class Tutorial extends Component {
               </CardSection>
             </Card>
             <CardSection>
-              {/* <Image source={{}} /> */}
               <Text
                 style={{
                   fontFamily: 'HelveticaNeue-UltraLight'

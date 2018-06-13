@@ -1,15 +1,15 @@
 export const ENTRIES = [
   {
     instruction: 'You scratch their back, they scratch yours.',
-    image: 'https://i.imgur.com/UYiroysl.jpg'
+    image: 'https://i.imgur.com/p3BYc7V.png'
   },
   {
     instruction: "Swipe right if you're interested in exchanging.",
-    image: 'https://i.imgur.com/UPrs1EWl.jpg'
+    image: 'https://i.imgur.com/Ly09LxL.png'
   },
   {
     instruction: 'Make a match if you both swipe right!',
-    image: 'https://i.imgur.com/MABUbpDl.jpg'
+    image: 'https://i.imgur.com/RYwSfwP.png'
   },
   {
     instruction: 'Chat and figure out a win-win deal.',
