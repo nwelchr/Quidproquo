@@ -14,25 +14,6 @@
 
 MongoDB with Mongoose • Express • React Native • Redux • Node.js • Firebase
 
-## Implmentation Timeline
-
-**5/30 - 6/2**
-
-- Finish React Native Udemy Course
-- Finish prototype, schema, routes
-
-**6/3 - 6/9**
-
-- Implement user authentication with Firebase
-- Construct mockup of app in React Native
-- Begin with styling
-
-**6/9 - 6/16**
-
-- Polish styling and application flow
-- Write tests and receive feedbacks from users
-- Publish on App Store / Google Play Store
-
 ## MVPs
 
 1.  User authentication (OAuth)
